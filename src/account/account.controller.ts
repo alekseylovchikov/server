@@ -15,7 +15,9 @@ export class AccountController {
   @ApiOkResponse({
     type: AccountDto,
   })
-  getAccount(@SessionInfo() sessionInfo: GetSessionInfoDto) {
+  getAccount(
+    @SessionInfo() sessionInfo: GetSessionInfoDto,
+  ): Promise<AccountDto> {
     return this.accountService.getAccount(sessionInfo.id);
   }
 
@@ -26,7 +28,7 @@ export class AccountController {
   patchAccount(
     @Body() body: PathAccountDto,
     @SessionInfo() sessionInfo: GetSessionInfoDto,
-  ) {
+  ): Promise<AccountDto> {
     return this.accountService.patchAccount(sessionInfo.id, body);
   }
 }
